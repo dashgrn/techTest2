@@ -1,43 +1,35 @@
 import React from 'react'
-import { Row, Col, Card, Button, CardGroup, Form } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
-import { useFormik } from 'formik'
+import { Row, Col, Card, Button, CardGroup } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { sortProductsAsync } from '../actions/pordList'
 
 export const Cards = () => {
 
+    const dispatch = useDispatch();
+
     const { products } = useSelector(store => store.productList) //destructuring from STORE
-    console.log('products array from store', products)
-    products.map((product, index) => (
-        console.log('product', index, product)
-    ))
+    // console.log('products array from store', products)
+    // products.map((product, index) => (
+    //     console.log('product', index, product)
+    // ))
 
-    const formik = useFormik({
-        initialValues: {
-            sort: ''
-        },
-        onSubmit: (data => {
-            console.log('formik submit data', data)
-        })
-    })
-
+    
+    const desHandler = () => {
+        dispatch(sortProductsAsync('des'))
+    }
+    const ascHandler = () => {
+        dispatch(sortProductsAsync('asc'))
+    }
 
     return (
         <>
-            <Form onSubmit={formik.handleSubmit}>
-                <Row >
-                    <Col xs="auto" className="my-3 mx-3">
-                        <Form.Select name='sort'
-                            onChange={formik.handleChange}
-                            className="me-sm-2"
-                            id="inlineFormCustomSelect">
-                                <option name='sort'>Ordenar</option>
-                                <option name='sort' >Menor precio</option>
-                                <option name='sort'>Mayor precio</option>
-                        </Form.Select>
-                    </Col>
-                </Row>
-            </Form>
-
+            <Button variant="dark" className="m-3" onClick={() => desHandler()}>
+                Mayor precio
+            </Button>
+            <Button variant="dark" className="m-3" onClick={() => ascHandler()}>
+                Menor precio
+            </Button>
+    
             <CardGroup>
 
                 {
