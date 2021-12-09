@@ -2,6 +2,7 @@ import { typesProduct } from "../types/types";
 
 const initialState = {
     products: [],
+    query:''
 }
 
 export const prodReducer = (state = initialState, action) => {

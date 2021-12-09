@@ -12,7 +12,7 @@ export const Cards = () => {
     ))
 
     const formik = useFormik({
-        initalValues: {
+        initialValues: {
             sort: ''
         },
         onSubmit: (data => {
@@ -27,12 +27,12 @@ export const Cards = () => {
                 <Row >
                     <Col xs="auto" className="my-3 mx-3">
                         <Form.Select name='sort'
-                            value={formik.sort}
+                            onChange={formik.handleChange}
                             className="me-sm-2"
                             id="inlineFormCustomSelect">
-                                <option value="">Ordenar</option>
-                                <option value="menor">Menor precio</option>
-                                <option value="mayor">Mayor precio</option>
+                                <option name='sort'>Ordenar</option>
+                                <option name='sort' >Menor precio</option>
+                                <option name='sort'>Mayor precio</option>
                         </Form.Select>
                     </Col>
                 </Row>

@@ -35,7 +35,8 @@ export const searchAsyn = (search) => {
     return async (dispatch) => {
        
         const productCollections = collection(db,"products");
-        const q = query(productCollections,where("title","==",search))
+        console.log('search query', search.query)
+        const q = query(productCollections,where("title","==",search.query))
         const datos = await getDocs(q);
         console.log('search dada return',datos)
         const productsArrSearch = [];
@@ -46,6 +47,7 @@ export const searchAsyn = (search) => {
         dispatch(searchSync(productsArrSearch))
     }
 }
+
 export const searchSync = (search) => {
     return{
         type: typesProduct.search,

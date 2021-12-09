@@ -10,15 +10,14 @@ export const Bar = () => {
     const dispatch = useDispatch();
 
     const formik = useFormik({
-        initalValues: {
-            search: ''
+        initialValues: {
+            query: ''
         },
-        onSubmit: (data) => {
-            console.log('formik submit data', data)
-            //dispatch(searchAsyn(search))
+        onSubmit: (query) => {
+            console.log('formik submit data', query)
+            dispatch(searchAsyn(query))
         }
     })
-
 
     return (
         <>
@@ -26,10 +25,8 @@ export const Bar = () => {
                 <Container>
                     <form onSubmit={formik.handleSubmit} className="d-flex">
                         <input
-                            name="search"
-                            placeholder="Buscar Producto"
-                            className="me-2"
-                            aria-label="Search"
+                        placeholder="Debes escribir tal cual el nombre"
+                            name="query"
                             onChange={formik.handleChange}
                         />
                         <Button type="submit" variant="outline-success">Buscar</Button>
